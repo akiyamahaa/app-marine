@@ -1,12 +1,10 @@
 import {
   StyleSheet,
-  Text,
-  View,
   TouchableOpacity,
-  Dimensions,
   StatusBar,
+  Platform,
 } from "react-native";
-import { Image, Box } from "@gluestack-ui/themed";
+import { Image, Box, VStack, Text } from "@gluestack-ui/themed";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 
@@ -20,29 +18,57 @@ const levels: LevelInfo[] = [
   { text: "Medium", level: "medium" },
   { text: "Hard", level: "hard" },
 ];
+const OPTION_COLOR = ["#44EFB2", "#FFA800", "#FF516F"];
 
 const Practice = () => {
   const navigation = useNavigation<any>();
   return (
-    <Box style={{ height: "100%", backgroundColor: '#F5F5F5' }}>
-      <StatusBar barStyle="dark-content" />
-      <View style={styles.container}>
-        <Text style={styles.textmain}>PRACTICE WITH ZOODY</Text>
-        {levels.map((info) => (
+    <VStack
+      flex={1}
+      gap={"$12"}
+      px={"$8"}
+      py={"$4"}
+      justifyContent="space-between"
+      bg="$white"
+    >
+      {Platform.OS == "android" && <StatusBar barStyle="light-content" />}
+      <Image
+        source={require("../../assets/question_logo.png")}
+        w="$full"
+        height={200}
+        resizeMode="contain"
+        alt="logo"
+      />
+      <VStack gap={"$6"}>
+        {levels.map((info, index) => (
           <TouchableOpacity
-            style={styles.box}
             key={info.level}
             onPress={() =>
               navigation.navigate("PracticeScreen", { level: info.level })
             }
+            style={{ width: "100%" }}
           >
-            <Text style={styles.text}>{info.text}</Text>
+            <Box
+              backgroundColor={OPTION_COLOR[index]}
+              py={"$3"}
+              alignItems="center"
+              rounded={"$lg"}
+            >
+              <Text fontWeight="$semibold" color="$white" fontSize={"$2xl"}>
+                {info.text}
+              </Text>
+            </Box>
           </TouchableOpacity>
         ))}
-      </View>
-    </Box>
+      </VStack>
+      <Box>
+        <Text textAlign="center" fontSize={"$sm"} color="$coolGray500">
+          Lựa chọn mức độ câu hỏi
+        </Text>
+      </Box>
+    </VStack>
   );
-}
+};
 export default Practice;
 
 const styles = StyleSheet.create({

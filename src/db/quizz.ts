@@ -1,6 +1,5 @@
 import { ImageSourcePropType } from "react-native";
 
-
 export interface QuizzData {
   image: ImageSourcePropType;
   ques: string;
@@ -9,7 +8,14 @@ export interface QuizzData {
 }
 
 export const quizzData: { [key: string]: QuizzData[] } = {
-  easy:[],
+  easy: [
+    {
+      image: require("../assets/turtle.png"),
+      ques: "Question 1: Where do Turtles lay eggs?",
+      choose: ["Under the sea", "At the place they were born", "On the sand"],
+      ans: 1,
+    },
+  ],
   medium: [],
-  hard: []
+  hard: [],
 };

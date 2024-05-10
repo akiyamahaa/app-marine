@@ -17,7 +17,7 @@ export enum EStatus {
 export interface TextBoxProps extends TouchableOpacityProps {
   status: EStatus;
   content: string;
-  next:boolean;
+  next: boolean;
 }
 
 const TextBox = (props: TextBoxProps) => {
@@ -44,8 +44,12 @@ const TextBox = (props: TextBoxProps) => {
       break;
   }
   return (
-    <TouchableOpacity style={[styles.button, style]} {...rest} disabled={props.next}>
-      <Box w={'$full'} style={[styles.box, extraBox]}>
+    <TouchableOpacity
+      style={[styles.button, style]}
+      {...rest}
+      disabled={props.next}
+    >
+      <Box w={"$full"} style={[styles.box, extraBox]}>
         <Text style={[styles.text, extraText]}>{content}</Text>
       </Box>
     </TouchableOpacity>
@@ -63,7 +67,7 @@ const styles = StyleSheet.create({
     height: 41,
     backgroundColor: "#FFFFFF",
     borderRadius: 10,
-    borderColor: "#3D7944",
+    borderColor: "#D1D5DB",
     borderWidth: 1,
     justifyContent: "center",
   },
@@ -72,16 +76,16 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   correctBox: {
-    backgroundColor: "#3D7944",
-    borderColor: "#3D7944",
+    backgroundColor: "#3aa34a",
+    borderColor: "#3aa34a",
     borderWidth: 1,
   },
   correctText: {
     color: "#FFFFFF",
   },
   in_correctBox: {
-    backgroundColor: "#D00809",
-    borderColor: "#D00809",
+    backgroundColor: "#ef4444",
+    borderColor: "#ef4444",
     borderWidth: 1,
   },
   in_correctText: {
@@ -89,7 +93,7 @@ const styles = StyleSheet.create({
   },
   disableBox: {
     backgroundColor: "#FFFFFF",
-    borderColor: "#3D7944",
+    borderColor: "#D1D5DB",
     borderWidth: 1,
     opacity: 0.5,
   },

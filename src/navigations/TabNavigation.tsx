@@ -1,14 +1,13 @@
-import { ImageBackground, StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "../screens/Home";
+import Home from "../screens/home/Home";
 import { Text, VStack, useStyled, useTheme } from "@gluestack-ui/themed";
 import { BottomTabsParams } from "./config";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Quizz from "../screens/quizz-mode/Quizz";
 import Practice from "../screens/guess-word/Practice";
-import Profile from "../screens/Profile";
-import PuzzleScreen from "../screens/puzzle/PuzzleScreen";
+import Puzzle from "../screens/puzzle/Puzzle";
 
 const Tab = createBottomTabNavigator<BottomTabsParams>();
 
@@ -18,18 +17,9 @@ interface ITabIcon {
   title: string;
 }
 const TabIcon = ({ focused, name, title }: ITabIcon) => {
-  const { colors } = useTheme();
-  const styled = useStyled()
   return (
-
     <VStack alignItems={"center"}>
-      <Ionicons
-        name={name}
-        size={20}
-        color={
-          focused ? "#3E5076" : "#B0B0B0"
-        }
-      />
+      <Ionicons name={name} size={20} color={focused ? "#3E5076" : "#B0B0B0"} />
       <Text
         fontSize={10}
         fontWeight={"$medium"}
@@ -38,50 +28,49 @@ const TabIcon = ({ focused, name, title }: ITabIcon) => {
         {title}
       </Text>
     </VStack>
-  )
-}
+  );
+};
 
 interface ITabData {
   id: number;
   tabName: keyof BottomTabsParams;
   title: string;
   iconName: keyof typeof Ionicons.glyphMap;
-  component: any
+  component: any;
 }
 
 export const TabData: ITabData[] = [
   {
     id: 1,
-    tabName: 'Home',
+    tabName: "Home",
     title: "Trang chủ",
-    iconName: 'home',
-    component: PuzzleScreen,
+    iconName: "home",
+    component: Home,
   },
   {
     id: 2,
-    tabName: 'Quizz',
+    tabName: "Quizz",
     title: "Trắc nghiệm",
-    iconName: 'apps',
+    iconName: "apps",
     component: Quizz,
   },
   {
     id: 3,
-    tabName: 'Practice',
-    title: "Luyện tập",
-    iconName: 'bulb',
+    tabName: "Practice",
+    title: "Nối từ",
+    iconName: "bulb",
     component: Practice,
   },
   {
     id: 4,
-    tabName: 'Profile',
-    title: "Profile",
-    iconName: 'person',
-    component: Profile,
+    tabName: "Puzzle",
+    title: "Xếp hình",
+    iconName: "extension-puzzle",
+    component: Puzzle,
   },
-]
+];
 
 const TabNavigation = () => {
-  const { colors } = useTheme();
   return (
     <Tab.Navigator
       screenOptions={{
@@ -97,7 +86,11 @@ const TabNavigation = () => {
           component={tab.component}
           options={{
             tabBarIcon: ({ focused }) => (
-              <TabIcon focused={focused} name={tab.iconName} title={tab.title} />
+              <TabIcon
+                focused={focused}
+                name={tab.iconName}
+                title={tab.title}
+              />
             ),
             headerShown: true,
             title: tab.title,
@@ -105,12 +98,11 @@ const TabNavigation = () => {
               backgroundColor: "#3E5076",
             },
             headerTitleStyle: {
-              color: '#fff',
+              color: "#fff",
             },
           }}
         />
       ))}
-
     </Tab.Navigator>
   );
 };

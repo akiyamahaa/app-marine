@@ -4,13 +4,12 @@ export type RootStackParams = {
   QuizzScreen: undefined;
   PracticeScreen: undefined;
   PracticeResult: undefined;
+  Detail: undefined;
 };
 
 export type BottomTabsParams = {
   Home: undefined;
   Quizz: undefined;
   Practice: undefined;
-  Profile: undefined;
+  Puzzle: undefined;
 };
-
-

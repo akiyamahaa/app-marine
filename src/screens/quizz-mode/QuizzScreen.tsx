@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native";
-import { Button, Text, Image, Box, View } from "@gluestack-ui/themed";
-import React, { useState } from "react";
+import { Button, Text, Image, Box, View, VStack } from "@gluestack-ui/themed";
+import React, { useLayoutEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
 import { quizzData } from "../../db/quizz";
@@ -8,9 +8,9 @@ import TextBox, { EStatus } from "../../components/common/TextBox";
 import { getRandomArray } from "../../utils/function";
 
 const show: { [key: string]: string } = {
-  easy: "Easy",
-  medium: "Medium",
-  hard: "Hard",
+  easy: "Dễ",
+  medium: "Trung bình",
+  hard: "Khó",
 };
 
 const QuizzScreen = () => {
@@ -22,12 +22,11 @@ const QuizzScreen = () => {
   const [next, setNext] = useState(false);
   const [point, setPoint] = useState(0);
 
-
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
   const [currQues, setCurrQues] = useState(0);
   const level: string = route.params.level ? route.params.level : "easy";
-  const [quizzes] = useState(getRandomArray(quizzData[level], 4))
+  const [quizzes] = useState(getRandomArray(quizzData[level], 4));
 
   const onPress = (i: number) => () => {
     const { ans } = quizzes[currQues];
@@ -46,8 +45,6 @@ const QuizzScreen = () => {
     setStatus(newStatus);
   };
 
-  
-
   const onNext = () => {
     if (currQues < quizzes.length - 1) {
       setCurrQues(currQues + 1);
@@ -59,64 +56,71 @@ const QuizzScreen = () => {
       }
       setStatus(newStatus);
     } else {
-      navigation.navigate("QuizzResult", { level: level, point, length: quizzes.length });
+      navigation.navigate("QuizzResult", {
+        level: level,
+        point,
+        length: quizzes.length,
+      });
     }
   };
 
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: `Mức độ ${show[level]}`,
+    });
+  }, []);
+
   return (
-    <Box flex={1} alignItems="center" padding={'$8'}>
-      <Text style={styles.text_main}>ZOODY'S QUIZ</Text>
-      <Text style={styles.text_level}>Level {show[level]}</Text>
-      <Image
-        alt="img-ques"
-        w={'$full'}
-        rounded={'$lg'}
-        height={Math.round((159 / 290) * Math.round(0.8 * Dimensions.get("screen").width))}
-        source={quizzes[currQues].image}
-      />
-      <Text
-        color="#757575"
-        fontWeight="700"
-        fontSize={'$lg'}
-        marginVertical={'$6'}
-        w={'$full'}
-      >{quizzes[currQues].ques}</Text>
-      <Box w={'$full'} gap={12}>
-        {quizzes[currQues].choose.map((item: string, i: number) => (
-          <TextBox
-            key={`${item}-${i}`}
-            status={status[i]}
-            onPress={onPress(i)}
-            content={item}
-            next={next}
-          />
-        ))}
-      </Box>
-      <View
-        style={{ height: 50, justifyContent: "center", marginVertical: 20 }}
-        flexDirection="row"
-      >
-        <Button
-          style={styles.btn__stop}
-          onPress={() => navigation.navigate("Quizz")}
-        >
+    <VStack flex={1} justifyContent="space-between" bg="$white">
+      <VStack gap={"$6"}>
+        <Image
+          alt="img-ques"
+          w={"$full"}
+          height={Math.round(
+            (159 / 290) * Math.round(0.8 * Dimensions.get("screen").width)
+          )}
+          source={quizzes[currQues].image}
+        />
+        <VStack px="$12" gap="$10">
           <Text
-            style={{
-              color: "#3D7944",
-            }}
+            color="$textDark900"
+            fontWeight="600"
+            fontSize={"$md"}
+            w={"$full"}
+            textAlign="center"
           >
-            Stop
+            {quizzes[currQues].ques}
+          </Text>
+          <Box w={"$full"} gap={"$4"}>
+            {quizzes[currQues].choose.map((item: string, i: number) => (
+              <TextBox
+                key={`${item}-${i}`}
+                status={status[i]}
+                onPress={onPress(i)}
+                content={item}
+                next={next}
+              />
+            ))}
+          </Box>
+        </VStack>
+      </VStack>
+      <Box height={50} px={"$4"} my={"$4"}>
+        <Button
+          disabled={!next}
+          w={"$full"}
+          rounded={"$xl"}
+          bg="#3758F9"
+          onPress={onNext}
+          opacity={!next ? 0.5 : 1}
+        >
+          <Text color="$white">
+            {next && currQues === quizzes.length - 1
+              ? "Hoàn thành"
+              : "Tiếp tục"}
           </Text>
         </Button>
-        {next && (
-          <Button style={styles.btn__continue} onPress={onNext}>
-            <Text>
-              {currQues === quizzes.length - 1 ? "Finish" : "Continue"}
-            </Text>
-          </Button>
-        )}
-      </View>
-    </Box>
+      </Box>
+    </VStack>
   );
 };
 
