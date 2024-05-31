@@ -8,6 +8,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import Quizz from "../screens/quizz-mode/Quizz";
 import Practice from "../screens/guess-word/Practice";
 import Puzzle from "../screens/puzzle/Puzzle";
+import { UseTokenColor } from "../hook/UseTokenColor";
 
 const Tab = createBottomTabNavigator<BottomTabsParams>();
 
@@ -17,13 +18,18 @@ interface ITabIcon {
   title: string;
 }
 const TabIcon = ({ focused, name, title }: ITabIcon) => {
+  const colors = UseTokenColor();
   return (
     <VStack alignItems={"center"}>
-      <Ionicons name={name} size={20} color={focused ? "#3E5076" : "#B0B0B0"} />
+      <Ionicons
+        name={name}
+        size={20}
+        color={focused ? colors.primary600 : colors.warmGray300}
+      />
       <Text
         fontSize={10}
         fontWeight={"$medium"}
-        color={focused ? "#3E5076" : "#B0B0B0"}
+        color={focused ? colors.primary600 : colors.warmGray300}
       >
         {title}
       </Text>
@@ -71,6 +77,8 @@ export const TabData: ITabData[] = [
 ];
 
 const TabNavigation = () => {
+  const colors = UseTokenColor();
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -95,10 +103,10 @@ const TabNavigation = () => {
             headerShown: true,
             title: tab.title,
             headerStyle: {
-              backgroundColor: "#3E5076",
+              backgroundColor: colors.white,
             },
             headerTitleStyle: {
-              color: "#fff",
+              color: colors.primary600,
             },
           }}
         />

@@ -1,11 +1,5 @@
-import {
-  StyleSheet,
-  Text,
-  Dimensions,
-  TouchableOpacity,
-
-} from "react-native";
-import { Box, Button, View } from "@gluestack-ui/themed";
+import { StyleSheet, Text, Dimensions, TouchableOpacity } from "react-native";
+import { Box, Button, HStack, View } from "@gluestack-ui/themed";
 import React, { useRef, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
@@ -45,19 +39,19 @@ const PracticeScreen = () => {
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
   const [currQues, setCurrQues] = useState(0);
-  const level: string = route.params && route.params.level ? route.params.level : "easy";
+  const level: string =
+    route.params && route.params.level ? route.params.level : "easy";
   const [correct, setCorrect] = useState<boolean | null>(null);
   const [next, setNext] = useState(false);
 
-  const [practices] = useState(practiceData[level])
-
+  const [practices] = useState(practiceData[level]);
 
   const onChange = (data: any) => {
     const ans = practices[currQues].ans;
     if (data.wordString.length == ans.length) {
       const ansText = ans.join("");
       setCorrect(ansText === data.wordString);
-      setNext(true)
+      setNext(true);
     } else {
       setCorrect(null);
     }
@@ -78,17 +72,11 @@ const PracticeScreen = () => {
   };
 
   return (
-    <Box style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.text_main}>PRACTICE WITH ZOODY</Text>
-        <Text style={styles.text_level}>Level: {show[level]}</Text>
-      </View>
-      <View style={styles.main}>
-        <Text style={styles.text__ques}>
-          {practices[currQues].ques}
-        </Text>
-      </View>
-      <View style={styles.box__choose}>
+    <Box flex={1} alignItems="center" p="$4">
+      <Box>
+        <Text style={styles.text__ques}>{practices[currQues].ques}</Text>
+      </Box>
+      <HStack>
         <QuizInput
           size="large"
           borderColor="#3D7944"
@@ -96,20 +84,13 @@ const PracticeScreen = () => {
           onChange={onChange}
           key={currQues}
         />
-      </View>
+      </HStack>
       <View
         style={{ height: 50, justifyContent: "center", marginVertical: 20 }}
         flexDirection="row"
       >
-        <Button
-          onPress={() => navigation.goBack()}
-        >
-          <Text
-            style={{
-            }}
-          >
-            Stop
-          </Text>
+        <Button onPress={() => navigation.goBack()}>
+          <Text style={{}}>Stop</Text>
         </Button>
         {next && (
           <Button onPress={onNext}>
@@ -150,10 +131,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 20,
-  },
-  main: {
-    marginTop: 40,
-    alignItems: "center",
   },
   text__ques: {
     color: "#757575",

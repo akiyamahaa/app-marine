@@ -1,20 +1,19 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import { PicturePuzzle, PuzzlePieces } from 'react-native-picture-puzzle';
-import { ActivityIndicator } from 'react-native';
-import { Box } from '@gluestack-ui/themed';
-import { randomPuzzle } from '../../db/puzzle';
-
+import React, { useState, useCallback, useEffect } from "react";
+import { PicturePuzzle, PuzzlePieces } from "react-native-picture-puzzle";
+import { ActivityIndicator } from "react-native";
+import { Box } from "@gluestack-ui/themed";
+import { EMode, randomPuzzle } from "../../db/puzzle";
 
 interface Props {
   pieces: PuzzlePieces;
   setPieces: React.Dispatch<React.SetStateAction<PuzzlePieces>>;
-  source: { uri: string; };
+  source: { uri: string };
+  mode: EMode;
 }
 
 const PuzzleGame = (props: Props) => {
-  const { pieces, setPieces, source } = props;
+  const { pieces, setPieces, source, mode } = props;
   const [hidden, setHidden] = useState<number | null>(0); // piece to obscure
-  console.log(pieces)
   const renderLoading = useCallback(
     (): JSX.Element => <ActivityIndicator />,
     []
@@ -27,12 +26,6 @@ const PuzzleGame = (props: Props) => {
     },
     [setPieces, setHidden]
   );
-
-  useEffect(() => {
-    // setPieces(
-    //   randomPuzzle['easy'][Math.floor(Math.random() * randomPuzzle['easy'].length)]
-    // );
-  }, []);
 
   return (
     <Box>

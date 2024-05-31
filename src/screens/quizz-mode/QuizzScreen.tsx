@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native";
-import { Button, Text, Image, Box, View, VStack } from "@gluestack-ui/themed";
+import { Button, Text, Image, Box, VStack } from "@gluestack-ui/themed";
 import React, { useLayoutEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
@@ -7,7 +7,11 @@ import { quizzData } from "../../db/quizz";
 import TextBox, { EStatus } from "../../components/common/TextBox";
 import { getRandomArray } from "../../utils/function";
 
-const show: { [key: string]: string } = {
+interface IShowData {
+  [key: string]: string;
+}
+
+const show: IShowData = {
   easy: "Dễ",
   medium: "Trung bình",
   hard: "Khó",

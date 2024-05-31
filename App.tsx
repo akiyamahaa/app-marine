@@ -4,7 +4,7 @@ import store from "./src/store";
 import Root from "./src/navigations/Root";
 import { Box, GluestackUIProvider, Text } from "@gluestack-ui/themed";
 import { StatusBar } from "react-native";
-import { config } from "@gluestack-ui/config";
+import { config } from "./config/gluestack-ui.config";
 
 export default function App() {
   return (

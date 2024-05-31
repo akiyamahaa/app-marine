@@ -11,10 +11,13 @@ import QuizzScreen from "../screens/quizz-mode/QuizzScreen";
 import PracticeResult from "../screens/guess-word/PracticeResult";
 import PracticeScreen from "../screens/guess-word/PracticeScreen";
 import Detail from "../screens/detail/Detail";
+import { UseTokenColor } from "../hook/UseTokenColor";
+import PuzzleScreen from "../screens/puzzle/PuzzleScreen";
 
 const Stack = createNativeStackNavigator<RootStackParams>();
 
 const Root = () => {
+  const colors = UseTokenColor();
   return (
     <>
       <LoadingOverlay />
@@ -36,12 +39,12 @@ const Root = () => {
               title: "Kết quả trắc nghiệm",
               headerBackTitleVisible: false,
               headerStyle: {
-                backgroundColor: "#3E5076",
+                backgroundColor: colors.white,
               },
               headerTitleStyle: {
-                color: "white",
+                color: colors.primary600,
               },
-              headerTintColor: "white",
+              headerTintColor: colors.primary600,
             }}
           />
           <Stack.Screen
@@ -52,12 +55,12 @@ const Root = () => {
               title: "Bài trắc nghiệm",
               headerBackTitleVisible: false,
               headerStyle: {
-                backgroundColor: "#3E5076",
+                backgroundColor: colors.white,
               },
               headerTitleStyle: {
-                color: "white",
+                color: colors.primary600,
               },
-              headerTintColor: "white",
+              headerTintColor: colors.primary600,
             }}
           />
           <Stack.Screen
@@ -68,12 +71,12 @@ const Root = () => {
               title: "Bài thực hành",
               headerBackTitleVisible: false,
               headerStyle: {
-                backgroundColor: "#3E5076",
+                backgroundColor: colors.white,
               },
               headerTitleStyle: {
-                color: "white",
+                color: colors.primary600,
               },
-              headerTintColor: "white",
+              headerTintColor: colors.primary600,
             }}
           />
           <Stack.Screen
@@ -84,12 +87,28 @@ const Root = () => {
               title: "Kết quủa thực hành",
               headerBackTitleVisible: false,
               headerStyle: {
-                backgroundColor: "#3E5076",
+                backgroundColor: colors.white,
               },
               headerTitleStyle: {
-                color: "white",
+                color: colors.primary600,
               },
-              headerTintColor: "white",
+              headerTintColor: colors.primary600,
+            }}
+          />
+          <Stack.Screen
+            name="PuzzleScreen"
+            component={PuzzleScreen}
+            options={{
+              headerShown: true,
+              title: "Trò chơi",
+              headerBackTitleVisible: false,
+              headerStyle: {
+                backgroundColor: colors.white,
+              },
+              headerTitleStyle: {
+                color: colors.primary600,
+              },
+              headerTintColor: colors.primary600,
             }}
           />
         </Stack.Navigator>

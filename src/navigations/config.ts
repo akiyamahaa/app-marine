@@ -5,6 +5,7 @@ export type RootStackParams = {
   PracticeScreen: undefined;
   PracticeResult: undefined;
   Detail: undefined;
+  PuzzleScreen: undefined;
 };
 
 export type BottomTabsParams = {
@@ -12,4 +13,4 @@ export type BottomTabsParams = {
   Quizz: undefined;
   Practice: undefined;
   Puzzle: undefined;
-};
+} & RootStackParams;
