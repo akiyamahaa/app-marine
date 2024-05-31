@@ -1,11 +1,12 @@
-import { StyleSheet, Text, Dimensions, TouchableOpacity } from "react-native";
-import { Box, Button, HStack, View } from "@gluestack-ui/themed";
+import { StyleSheet, Dimensions, TouchableOpacity } from "react-native";
+import { Box, Button, Text, HStack, View } from "@gluestack-ui/themed";
 import React, { useRef, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
 import { QuizInput } from "react-native-quiz-input";
 import { EStatus } from "../../components/common/CharacterBox";
 import { practiceData } from "../../db/practice";
+import { UseTokenColor } from "../../hook/UseTokenColor";
 
 const imgWidth = Math.round(0.8 * Dimensions.get("screen").width);
 
@@ -35,7 +36,7 @@ const PracticeScreen = () => {
     EStatus.NORMAL,
   ]);
   const [point, setPoint] = useState(0);
-
+  const colors = UseTokenColor();
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
   const [currQues, setCurrQues] = useState(0);
@@ -72,35 +73,46 @@ const PracticeScreen = () => {
   };
 
   return (
-    <Box flex={1} alignItems="center" p="$4">
+    <Box bg="$white" flex={1} alignItems="center" p="$4">
       <Box>
         <Text style={styles.text__ques}>{practices[currQues].ques}</Text>
       </Box>
       <HStack>
         <QuizInput
           size="large"
-          borderColor="#3D7944"
+          borderColor={colors.primary600}
           wordStructure={practices[currQues].ans.map((c) => true)}
           onChange={onChange}
           key={currQues}
         />
       </HStack>
-      <View
-        style={{ height: 50, justifyContent: "center", marginVertical: 20 }}
-        flexDirection="row"
-      >
+      {correct != null && (
+        <Text mt="$4">{correct ? "Chính xác" : "Chưa chính xác"}</Text>
+      )}
+      <HStack mt="$2" gap="$4">
         <Button onPress={() => navigation.goBack()}>
-          <Text style={{}}>Stop</Text>
+          <Text
+            color="$white"
+            fontWeight={"$semibold"}
+            fontSize={20}
+            lineHeight={28}
+          >
+            Stop
+          </Text>
         </Button>
         {next && (
           <Button onPress={onNext}>
-            <Text>
+            <Text
+              color="$white"
+              fontWeight={"$semibold"}
+              fontSize={20}
+              lineHeight={28}
+            >
               {currQues === practices.length - 1 ? "Finish" : "Continue"}
             </Text>
           </Button>
         )}
-      </View>
-      {correct != null && <Text>{correct ? "CORRECT" : "IN_CORRECT"}</Text>}
+      </HStack>
     </Box>
   );
 };
