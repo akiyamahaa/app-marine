@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions, TouchableOpacity } from "react-native";
-import { Box, Button, Text, HStack, View } from "@gluestack-ui/themed";
+import { Box, Button, Text, HStack, View, Image } from "@gluestack-ui/themed";
 import React, { useRef, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
@@ -73,7 +73,24 @@ const PracticeScreen = () => {
   };
 
   return (
-    <Box bg="$white" flex={1} alignItems="center" p="$4">
+    <Box bg="$white" flex={1} alignItems="center" p="$4" gap={4}>
+      <Box
+        p="$4"
+        bg="$warmGray100"
+        borderRadius={8}
+        w={"$full"}
+        alignItems="center"
+      >
+        <Image
+          alt="image-ques"
+          source={{
+            uri: "https://teky.edu.vn/blog/wp-content/uploads/2022/04/hay-tim-den-duoi-hinh-bat-chu-de-choi-voi-ban-be.jpg",
+          }}
+          width={320}
+          height={200}
+          resizeMode="contain"
+        />
+      </Box>
       <Box>
         <Text style={styles.text__ques}>{practices[currQues].ques}</Text>
       </Box>

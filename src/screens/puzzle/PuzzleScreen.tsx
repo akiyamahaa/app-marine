@@ -15,23 +15,29 @@ import {
   checkEqualPuzzle,
   finishPuzzle,
   modePuzzle,
+  puzzleData,
   randomPuzzle,
 } from "../../db/puzzle";
 import PuzzleModal from "../../components/common/PuzzleModal";
 import useCountDown from "../../hook/UseCountDown";
 import RatingStar from "../../components/RatingStar";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParams } from "../../navigations/config";
 
-type Props = {};
+type Props = {} & NativeStackScreenProps<RootStackParams, "PuzzleScreen">;
 
-const PuzzleScreen = (props: Props) => {
-  const mode = EMode.EASY;
+const PuzzleScreen = ({ navigation, route }: Props) => {
+  const idPuzzle = route.params.id;
+  const myPuzzle = puzzleData.filter((puzzle) => puzzle.id === idPuzzle)[0];
+  const mode = myPuzzle.mode;
+  const source = { uri: myPuzzle.image };
+
   const [pieces, setPieces] = React.useState<PuzzlePieces>(
     randomPuzzle[mode][Math.floor(Math.random() * randomPuzzle[mode].length)]
   );
   const [show, setShow] = useState(false);
-  const totalTime = 100;
+  const totalTime = 60 * (myPuzzle.mode + 1);
   const { remainingTime, pause } = useCountDown(totalTime);
-  const source = require('../../assets/dolphen.png')
 
   const handleHint = () => {
     setShow(true);
@@ -59,14 +65,9 @@ const PuzzleScreen = (props: Props) => {
         </Text>
       </Box>
       <Box alignItems="center" gap={"$4"}>
-        <RatingStar rate={1} size={32} />
+        <RatingStar rate={myPuzzle.mode + 1} size={32} />
         <Box p={"$4"} rounded={"$2xl"} bg="$primary50">
-          <PuzzleGame
-            pieces={pieces}
-            setPieces={setPieces}
-            source={source}
-            mode={mode}
-          />
+          <PuzzleGame pieces={pieces} setPieces={setPieces} source={source} />
         </Box>
         <HStack justifyContent="flex-end" w="$full">
           <Button onPress={handleHint}>

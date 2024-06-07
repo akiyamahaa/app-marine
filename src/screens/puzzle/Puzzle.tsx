@@ -12,15 +12,12 @@ import {
 } from "@gluestack-ui/themed";
 import RatingStar from "../../components/RatingStar";
 import { Button } from "@gluestack-ui/themed";
-import {
-  ArrowCircleLeft,
-  ArrowCircleRight,
-  Timer1,
-} from "iconsax-react-native";
+import { ArrowCircleLeft, ArrowCircleRight } from "iconsax-react-native";
 import { UseTokenColor } from "../../hook/UseTokenColor";
 import ProgressHeader from "./components/ProgressHeader";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { BottomTabsParams } from "../../navigations/config";
+import { puzzleData } from "../../db/puzzle";
 
 type Props = {} & NativeStackScreenProps<BottomTabsParams, "Puzzle">;
 
@@ -31,17 +28,19 @@ const Puzzle = ({ navigation }: Props) => {
   const colors = UseTokenColor();
 
   const onPuzzleScreen = () => {
-    navigation.navigate("PuzzleScreen");
+    navigation.navigate("PuzzleScreen", {
+      id: puzzleData[indexPuzzle].id,
+    });
   };
 
   return (
     <Box flex={1} bg="$white" p="$4" justifyContent="center" gap="$8">
       <ProgressHeader />
       <Center gap="$4">
-        <RatingStar rate={1} size={32} />
+        <RatingStar rate={puzzleData[indexPuzzle].mode + 1} size={32} />
         <Box p={"$4"} rounded={"$2xl"} bg="$primary50">
           <Image
-            source={require("../../assets/dolphen.png")}
+            source={{ uri: puzzleData[indexPuzzle].image }}
             width={width}
             height={300}
             rounded={"$2xl"}
@@ -69,8 +68,18 @@ const Puzzle = ({ navigation }: Props) => {
             Bắt đầu
           </Text>
         </Button>
-        <TouchableOpacity onPress={() => setIndexPuzzle((prev) => prev + 1)}>
-          <ArrowCircleRight size="40" color={colors.primary600} />
+        <TouchableOpacity
+          onPress={() => setIndexPuzzle((prev) => prev + 1)}
+          disabled={indexPuzzle >= puzzleData.length - 1}
+        >
+          <ArrowCircleRight
+            size="40"
+            color={
+              indexPuzzle >= puzzleData.length - 1
+                ? colors.coolGray300
+                : colors.primary600
+            }
+          />
         </TouchableOpacity>
       </HStack>
     </Box>

@@ -15,6 +15,12 @@ export const quizzData: { [key: string]: QuizzData[] } = {
       choose: ["Under the sea", "At the place they were born", "On the sand"],
       ans: 1,
     },
+    {
+      image: require("../assets/turtle.png"),
+      ques: "Question 1: Where do Turtles lay eggs?",
+      choose: ["Under the sea", "At the place they were born", "On the sand"],
+      ans: 1,
+    },
   ],
   medium: [],
   hard: [],
