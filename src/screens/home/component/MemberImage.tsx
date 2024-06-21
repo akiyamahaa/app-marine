@@ -3,27 +3,27 @@ import React from "react";
 import { Box, ImageBackground, Text, VStack } from "@gluestack-ui/themed";
 
 export interface MemberImageProps {
+  id: number;
   image: ImageSourcePropType;
-  name?: string;
-  wrapperStyle?: any;
+  title: string;
+  description: string;
 }
 
+
+
 export default function MemberImage(props: MemberImageProps) {
-  const { image, name, wrapperStyle } = props;
+  const { image, title, description } = props;
 
   return (
     <Box rounded={"$2xl"} overflow="hidden" height={"$96"}>
-      <ImageBackground source={image} w="$full" alt="Animal" h={"$full"}>
+      <ImageBackground source={image} w="$full" alt="Animal" h={"$full"} resizeMode = "cover">
         <Box p={"$4"} flexDirection="column" justifyContent="flex-end" flex={1}>
           <VStack gap={"$3"} w={"70%"}>
             <Text color="$white" fontSize={18} fontWeight="$bold">
-              Rùa biển
+              {title}
             </Text>
             <Text color="$white" ellipsizeMode="tail" numberOfLines={2}>
-              Rùa biển (Chelonioidea) là một liên họ bò sát biển trong bộ Rùa,
-              sinh sống ở tất cả các đại dương trên thế giới ngoại trừ vùng Bắc
-              Cực. Riêng loài rùa lưng phẳng thì chỉ được tìm thấy ở vùng biển
-              phía bắc Australia.
+              {description}
             </Text>
           </VStack>
         </Box>

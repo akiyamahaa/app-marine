@@ -22,6 +22,7 @@ const QuizzScreen = () => {
     EStatus.NORMAL,
     EStatus.NORMAL,
     EStatus.NORMAL,
+    EStatus.NORMAL,
   ]);
   const [next, setNext] = useState(false);
   const [point, setPoint] = useState(0);
@@ -41,7 +42,8 @@ const QuizzScreen = () => {
     if (i == ans) {
       newStatus[i] = EStatus.CORRECT;
       setPoint(point + 1);
-    } else {
+    } 
+    else {
       newStatus[ans] = EStatus.CORRECT;
       newStatus[i] = EStatus.IN_CORRECT;
     }
@@ -78,11 +80,9 @@ const QuizzScreen = () => {
     <VStack flex={1} justifyContent="space-between" bg="$white">
       <VStack gap={"$6"}>
         <Image
+          alignSelf="center"
           alt="img-ques"
-          w={"$full"}
-          height={Math.round(
-            (159 / 290) * Math.round(0.8 * Dimensions.get("screen").width)
-          )}
+          style = {styles.ima}
           source={quizzes[currQues].image}
         />
         <VStack px="$12" gap="$10">
@@ -158,4 +158,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginHorizontal: 5,
   },
+  ima: {
+
+    height: Math.round(
+      (159 / 290) * Math.round( Dimensions.get("screen").width)
+    ),
+    width: Math.round(
+      0.8*Dimensions.get("screen").width
+    ),
+    resizeMode: "contain",
+  }
 });

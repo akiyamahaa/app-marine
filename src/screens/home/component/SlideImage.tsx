@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Box, HStack, VStack } from "@gluestack-ui/themed";
 import MemberImage, { MemberImageProps } from "./MemberImage";
 import Carousel from "react-native-snap-carousel";
+import { getRandomArray } from "../../../utils/function";
 export interface SlideProps {
   data: MemberImageProps[];
 }
@@ -12,12 +13,13 @@ const screenWidth = Dimensions.get("screen").width;
 const SlideImage = (props: SlideProps) => {
   const { data, ...rest } = props;
   const [slideIndex, setSlideIndex] = useState(0);
+  const [facts] = useState(getRandomArray(data, 4));
   return (
     <VStack alignItems={"center"} gap={"$2"}>
       <Carousel
-        data={data}
-        renderItem={({ item, index }) => (
-          <MemberImage {...item} key={item.name ? item.name : `item${index}`} />
+        data={facts}
+        renderItem={({ item }) => (
+          <MemberImage {...item} key={item.id} />
         )}
         itemWidth={Math.round(screenWidth * 0.8)}
         sliderWidth={screenWidth}
@@ -27,7 +29,7 @@ const SlideImage = (props: SlideProps) => {
         onSnapToItem={(index) => setSlideIndex(index)}
       />
       <HStack justifyContent="space-around" gap={8}>
-        {data.map((_, i) => (
+        {facts.map((_, i) => (
           <Box
             width={i == slideIndex ? "$4" : "$2"}
             height={"$2"}
