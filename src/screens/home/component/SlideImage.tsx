@@ -1,9 +1,10 @@
 import { Dimensions, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Box, HStack, VStack } from "@gluestack-ui/themed";
 import MemberImage, { MemberImageProps } from "./MemberImage";
 import Carousel from "react-native-snap-carousel";
 import { getRandomArray } from "../../../utils/function";
+import { useFocusEffect } from "@react-navigation/native";
 export interface SlideProps {
   data: MemberImageProps[];
 }
@@ -13,14 +14,20 @@ const screenWidth = Dimensions.get("screen").width;
 const SlideImage = (props: SlideProps) => {
   const { data, ...rest } = props;
   const [slideIndex, setSlideIndex] = useState(0);
-  const [facts] = useState(getRandomArray(data, 4));
+  const [facts, setFacts] = useState<MemberImageProps[]>(
+    getRandomArray(data, 4)
+  );
+
+  useFocusEffect(
+    useCallback(() => {
+      setFacts(getRandomArray(data, 4));
+    }, [data])
+  );
   return (
     <VStack alignItems={"center"} gap={"$2"}>
       <Carousel
         data={facts}
-        renderItem={({ item }) => (
-          <MemberImage {...item} key={item.id} />
-        )}
+        renderItem={({ item }) => <MemberImage {...item} key={item.id} />}
         itemWidth={Math.round(screenWidth * 0.8)}
         sliderWidth={screenWidth}
         autoplay={true} // Enable autoplay

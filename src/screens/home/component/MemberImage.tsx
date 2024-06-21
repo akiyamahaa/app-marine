@@ -9,20 +9,31 @@ export interface MemberImageProps {
   description: string;
 }
 
-
-
 export default function MemberImage(props: MemberImageProps) {
   const { image, title, description } = props;
 
   return (
     <Box rounded={"$2xl"} overflow="hidden" height={"$96"}>
-      <ImageBackground source={image} w="$full" alt="Animal" h={"$full"} resizeMode = "cover">
+      <ImageBackground
+        source={image}
+        w="$full"
+        alt="Animal"
+        h={"$full"}
+        resizeMode={"stretch"}
+      >
         <Box p={"$4"} flexDirection="column" justifyContent="flex-end" flex={1}>
-          <VStack gap={"$3"} w={"70%"}>
-            <Text color="$white" fontSize={18} fontWeight="$bold">
+          <VStack
+            gap={"$3"}
+            w={"$full"}
+            bg="$white"
+            opacity={"$60"}
+            p="$4"
+            borderRadius={"$2xl"}
+          >
+            <Text color="$black" fontSize={18} fontWeight="$bold">
               {title}
             </Text>
-            <Text color="$white" ellipsizeMode="tail" numberOfLines={2}>
+            <Text color="$black" ellipsizeMode="tail" numberOfLines={3}>
               {description}
             </Text>
           </VStack>
