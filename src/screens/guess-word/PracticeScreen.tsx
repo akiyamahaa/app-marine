@@ -100,6 +100,7 @@ const PracticeScreen = () => {
           borderColor={colors.primary600}
           wordStructure={practices[currQues].ans.map((c) => true)}
           onChange={onChange}
+          maxBoxesPerLine={6}
           key={currQues}
         />
       </HStack>
@@ -107,9 +108,13 @@ const PracticeScreen = () => {
         <Text mt="$4">{correct ? "Chính xác" : "Chưa chính xác"}</Text>
       )}
       <HStack mt="$2" gap="$4">
-        <Button onPress={() => navigation.goBack()}>
+        <Button
+          rounded={"$2xl"}
+          onPress={() => navigation.goBack()}
+          variant="outline"
+        >
           <Text
-            color="$white"
+            color="$primary600"
             fontWeight={"$semibold"}
             fontSize={20}
             lineHeight={28}
@@ -118,7 +123,7 @@ const PracticeScreen = () => {
           </Text>
         </Button>
         {next && (
-          <Button onPress={onNext}>
+          <Button rounded={"$2xl"} onPress={onNext} variant="solid">
             <Text
               color="$white"
               fontWeight={"$semibold"}

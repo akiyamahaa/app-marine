@@ -2,7 +2,12 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Box, ScrollView, VStack } from "@gluestack-ui/themed";
 import SlideImage from "./component/SlideImage";
-import { headerSlideData, mammal, softAnimal } from "../../db/slide-data";
+import {
+  groupSea,
+  headerSlideData,
+  mammal,
+  softAnimal,
+} from "../../db/slide-data";
 import MarineList from "./component/MarineList";
 import CardList from "./component/CardList";
 import { EDisplayType } from "../../types";
@@ -18,15 +23,15 @@ const Home = ({ navigation }: Props) => {
         <SlideImage data={headerSlideData} />
         <MarineList />
         <CardList
-          title="Động vật có vú"
-          data={mammal}
+          title="Nhóm sinh vật biển"
+          data={Object.values(groupSea)}
           displayType={EDisplayType.LARGE}
         />
-        <CardList
+        {/* <CardList
           title="Động vật thân mềm"
           data={softAnimal}
           displayType={EDisplayType.NORMAL}
-        />
+        /> */}
       </VStack>
     </ScrollView>
   );

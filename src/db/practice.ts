@@ -90,3 +90,9 @@ export const practiceData: { [key: string]: PracticeData[] } = {
     // },
   ],
 };
+
+export const practiceResult = {
+  easy: [
+    'camap','caheo'
+  ]
+}

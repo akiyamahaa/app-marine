@@ -4,7 +4,12 @@ export type RootStackParams = {
   QuizzScreen: undefined;
   PracticeScreen: undefined;
   PracticeResult: undefined;
-  Detail: undefined;
+  Detail: {
+    groupSeaName: string;
+  };
+  DetailWaterArea: {
+    waterName: string;
+  };
   PuzzleScreen: {
     id: number;
   };

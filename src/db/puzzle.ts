@@ -78,23 +78,3 @@ export const puzzleData = [
     mode: EMode.HARD,
   },
 ];
-
-export const puzzleDataObj = {
-  1: {
-    id: 1,
-    image:
-      "https://tepbac.com/upload/news/ge_image/2021/05/pexels-photo-3361052_1621385094.jpg",
-    mode: EMode.EASY,
-  },
-  2: {
-    id: 2,
-    image:
-      "https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2019/10/10/759376/Seaturtle.jpg",
-    mode: EMode.MEDIUM,
-  },
-  3: {
-    id: 3,
-    image: "https://ktmt.vnmediacdn.com/images/2022/02/17/42-1645067044-44.jpg",
-    mode: EMode.HARD,
-  },
-};
