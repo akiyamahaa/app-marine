@@ -14,9 +14,9 @@ interface LevelInfo {
 }
 
 const levels: LevelInfo[] = [
-  { text: "Easy", level: "easy" },
-  { text: "Medium", level: "medium" },
-  { text: "Hard", level: "hard" },
+  { text: "Dễ", level: "easy" },
+  { text: "Trung Bình", level: "medium" },
+  { text: "Khó", level: "hard" },
 ];
 const OPTION_COLOR = ["#44EFB2", "#FFA800", "#FF516F"];
 

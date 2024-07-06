@@ -14,7 +14,6 @@ import {
   EMode,
   checkEqualPuzzle,
   finishPuzzle,
-  modePuzzle,
   puzzleData,
   randomPuzzle,
 } from "../../db/puzzle";
@@ -23,6 +22,8 @@ import useCountDown from "../../hook/UseCountDown";
 import RatingStar from "../../components/RatingStar";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParams } from "../../navigations/config";
+import FinishModal from "../../components/common/FinishModal";
+import { getRandomElement } from "../../utils/function";
 
 type Props = {} & NativeStackScreenProps<RootStackParams, "PuzzleScreen">;
 
@@ -36,7 +37,9 @@ const PuzzleScreen = ({ navigation, route }: Props) => {
     randomPuzzle[mode][Math.floor(Math.random() * randomPuzzle[mode].length)]
   );
   const [show, setShow] = useState(false);
-  const totalTime = 60 * (myPuzzle.mode + 1);
+  const [showFinish, setShowFinish] = useState(false);
+
+  const totalTime = 30 * (myPuzzle.mode + 1);
   const { remainingTime, pause } = useCountDown(totalTime);
 
   const handleHint = () => {
@@ -46,11 +49,24 @@ const PuzzleScreen = ({ navigation, route }: Props) => {
   useEffect(() => {
     if (checkEqualPuzzle(pieces, finishPuzzle[mode])) {
       pause();
+      setShowFinish(true);
     }
   }, [pieces]);
 
+  useEffect(() => {
+    if (remainingTime <= 0) {
+      setShowFinish(true);
+    }
+  }, [remainingTime]);
+
   return (
     <Box flex={1} p="$4" pt="$10" gap="$12" bg="$white">
+      <FinishModal
+        showModal={showFinish}
+        setShowModal={setShowFinish}
+        isWinner={remainingTime > 0}
+        idAnimal={getRandomElement(["1", "2", "3"])}
+      />
       <PuzzleModal show={show} setShow={setShow} source={source} />
       <Box gap="$2">
         <Progress

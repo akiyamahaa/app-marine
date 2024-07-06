@@ -51,7 +51,7 @@ const PracticeScreen = () => {
     const ans = practices[currQues].ans;
     if (data.wordString.length == ans.length) {
       const ansText = ans.join("");
-      setCorrect(ansText === data.wordString);
+      setCorrect(ansText.toLowerCase() === data.wordString.toLowerCase());
       setNext(true);
     } else {
       setCorrect(null);
@@ -61,7 +61,9 @@ const PracticeScreen = () => {
   const onNext = () => {
     if (currQues < practices.length - 1) {
       setCurrQues(currQues + 1);
-      setPoint(point + 1);
+      if (correct) {
+        setPoint(point + 1);
+      }
       const newStatus = [...status];
       for (let index = 0; index < newStatus.length; index++) {
         newStatus[index] = EStatus.NORMAL;

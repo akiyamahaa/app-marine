@@ -3,7 +3,10 @@ export type RootStackParams = {
   QuizzResult: undefined;
   QuizzScreen: undefined;
   PracticeScreen: undefined;
-  PracticeResult: undefined;
+  PracticeResult: {
+    point: number;
+    level: string;
+  };
   Detail: {
     groupSeaName: string;
   };
