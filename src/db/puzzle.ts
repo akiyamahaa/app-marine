@@ -59,22 +59,32 @@ export const modePuzzle = (mode: EMode) => {
   return Array.from({ length: n }, (_, index) => index);
 };
 
-export const puzzleData = [
+export interface IPuzzle {
+  id: number;
+  image: string;
+  mode: EMode;
+  result: string[];
+}
+
+export const puzzleData: IPuzzle[] = [
   {
     id: 1,
     image:
       "https://tepbac.com/upload/news/ge_image/2021/05/pexels-photo-3361052_1621385094.jpg",
     mode: EMode.EASY,
+    result: ["camaptrang", "daubua"],
   },
   {
     id: 2,
     image:
       "https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2019/10/10/759376/Seaturtle.jpg",
     mode: EMode.MEDIUM,
+    result: ["daubua"],
   },
   {
     id: 3,
     image: "https://ktmt.vnmediacdn.com/images/2022/02/17/42-1645067044-44.jpg",
     mode: EMode.HARD,
+    result: ["daubua"],
   },
 ];

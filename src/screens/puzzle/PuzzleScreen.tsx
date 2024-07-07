@@ -39,7 +39,7 @@ const PuzzleScreen = ({ navigation, route }: Props) => {
   const [show, setShow] = useState(false);
   const [showFinish, setShowFinish] = useState(false);
 
-  const totalTime = 30 * (myPuzzle.mode + 1);
+  const totalTime = 45 * (myPuzzle.mode + 2);
   const { remainingTime, pause } = useCountDown(totalTime);
 
   const handleHint = () => {
@@ -65,7 +65,7 @@ const PuzzleScreen = ({ navigation, route }: Props) => {
         showModal={showFinish}
         setShowModal={setShowFinish}
         isWinner={remainingTime > 0}
-        idAnimal={getRandomElement(["1", "2", "3"])}
+        idAnimal={getRandomElement(myPuzzle.result)}
       />
       <PuzzleModal show={show} setShow={setShow} source={source} />
       <Box gap="$2">

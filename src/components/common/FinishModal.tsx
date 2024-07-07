@@ -41,9 +41,9 @@ const FinishModal = (props: Props) => {
   const handleBtn = () => {
     setShowModal(false);
     if (isWinner) {
-      // navigation.navigate("Detail",{
-      // id:idAnimal
-      // });
+      navigation.navigate("DetailAnimal", {
+        animalName: idAnimal,
+      });
     } else {
       navigation.navigate("TabNavigation");
     }

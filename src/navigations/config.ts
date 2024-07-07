@@ -3,6 +3,9 @@ export type RootStackParams = {
   QuizzResult: undefined;
   QuizzScreen: undefined;
   PracticeScreen: undefined;
+  DetailAnimal: {
+    animalName: string;
+  };
   PracticeResult: {
     point: number;
     level: string;
