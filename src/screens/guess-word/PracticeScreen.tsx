@@ -86,7 +86,7 @@ const PracticeScreen = () => {
         <Image
           alt="image-ques"
           source={{
-            uri: "https://teky.edu.vn/blog/wp-content/uploads/2022/04/hay-tim-den-duoi-hinh-bat-chu-de-choi-voi-ban-be.jpg",
+            uri: practices[currQues].img,
           }}
           width={320}
           height={200}

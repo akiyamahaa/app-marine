@@ -11,10 +11,7 @@ const MarineList = (props: Props) => {
     <VStack gap={"$4"}>
       <HStack justifyContent="space-between" mb={"$4"}>
         <Text fontWeight="$semibold" fontSize={"$xl"} color="$primary600">
-          Sinh vật biển
-        </Text>
-        <Text fontWeight="$normal" fontSize={"$sm"} color="$textDark500">
-          Xem tất cả
+          Vùng Biển
         </Text>
       </HStack>
       <HStack h={"$96"} gap={"$4"}>

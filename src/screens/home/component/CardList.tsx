@@ -37,9 +37,6 @@ const CardList = ({ data, displayType, title }: Props) => {
         <Text fontWeight="$semibold" fontSize={"$xl"} color="$primary600">
           {title}
         </Text>
-        <Text fontWeight="$normal" fontSize={"$sm"} color="$textDark500">
-          Xem tất cả
-        </Text>
       </HStack>
       <ScrollView w={"$full"} horizontal showsHorizontalScrollIndicator={false}>
         <HStack gap={"$4"}>
@@ -65,7 +62,7 @@ const CardList = ({ data, displayType, title }: Props) => {
                 </Text>
                 <Text
                   ellipsizeMode="tail"
-                  numberOfLines={2}
+                  numberOfLines={8}
                   color={"$coolGray500"}
                 >
                   {item.description}

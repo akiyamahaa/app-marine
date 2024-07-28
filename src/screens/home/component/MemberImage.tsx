@@ -4,7 +4,7 @@ import { Box, ImageBackground, Text, VStack } from "@gluestack-ui/themed";
 
 export interface MemberImageProps {
   id: number;
-  image: ImageSourcePropType;
+  image: string;
   title: string;
   description: string;
 }
@@ -15,7 +15,7 @@ export default function MemberImage(props: MemberImageProps) {
   return (
     <Box rounded={"$2xl"} overflow="hidden" height={"$96"}>
       <ImageBackground
-        source={image}
+        source={{ uri: image }}
         w="$full"
         alt="Animal"
         h={"$full"}
@@ -33,7 +33,7 @@ export default function MemberImage(props: MemberImageProps) {
             <Text color="$black" fontSize={18} fontWeight="$bold">
               {title}
             </Text>
-            <Text color="$black" ellipsizeMode="tail" numberOfLines={3}>
+            <Text color="$black" ellipsizeMode="tail" numberOfLines={4}>
               {description}
             </Text>
           </VStack>

@@ -44,6 +44,7 @@ const PuzzleModal = ({ show, setShow, source }: Props) => {
               height={300}
               aspectRatio="1"
               borderRadius={8}
+              resizeMode = "stretch"
             />
           </VStack>
         </ModalBody>

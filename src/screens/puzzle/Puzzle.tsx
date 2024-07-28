@@ -41,10 +41,11 @@ const Puzzle = ({ navigation }: Props) => {
         <Box p={"$4"} rounded={"$2xl"} bg="$primary50">
           <Image
             source={{ uri: puzzleData[indexPuzzle].image }}
-            width={width}
+            w={500}
             height={300}
             rounded={"$2xl"}
             alt="img-puzzle"
+            resizeMode={"stretch"}
           />
         </Box>
       </Center>

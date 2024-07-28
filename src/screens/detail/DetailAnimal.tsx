@@ -25,7 +25,6 @@ const DetailAnimal = ({ navigation, route }: Props) => {
   console.log("🚀 ~ DetailAnimal ~ animalName:", animalName);
   const [infoAnimal] = useState(animal[animalName]);
   console.log("🚀 ~ DetailAnimal ~ infoAnimal:", infoAnimal);
-
   if (!infoAnimal) {
     navigation.goBack();
   }
@@ -98,6 +97,12 @@ const DetailAnimal = ({ navigation, route }: Props) => {
               Con mồi
             </Text>
             <Text>{infoAnimal.food}</Text>
+          </VStack>
+          <VStack gap={"$1"}>
+            <Text fontWeight={"$bold"} fontSize={"$lg"}>
+              Fun fact
+            </Text>
+            <Text>{infoAnimal.fun}</Text>
           </VStack>
         </VStack>
         <Box w={"$full"} alignItems="center">

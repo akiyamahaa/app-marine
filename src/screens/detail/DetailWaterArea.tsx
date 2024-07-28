@@ -43,47 +43,49 @@ const DetailWaterArea = ({ navigation, route }: Props) => {
       </ImageBackground>
       <ScrollView>
         {/* Title */}
+        <ImageBackground flex={1} source={{ uri: "https://media.istockphoto.com/id/1143347756/vector/underwater-landscape-realistic-vector-background.jpg?s=612x612&w=0&k=20&c=NfdFUgjlg1IUe_WSgQYvgeKUqGZjTqfRDnuGTd5TXlg=" }} alt="Animal" w={"$full"} h={500} resizeMode="cover">
         <VStack p="$4" gap="$4">
           <Box marginTop={12}>
             <Text
               fontSize={"$2xl"}
               fontWeight={"$extrabold"}
-              color="$primary600"
+              color="yellow"
             >
               {titleWaterSea[waterName]}
             </Text>
           </Box>
           <VStack gap={"$2"}>
-            <Text fontWeight={"$bold"} fontSize={"$lg"}>
+            <Text fontWeight={"$bold"} fontSize={"$lg"} color="purple">
               Độ sâu
             </Text>
-            <Text>{data.depth_range}</Text>
+            <Text color="$white">{data.depth_range}</Text>
           </VStack>
           <VStack gap={"$1"}>
-            <Text fontWeight={"$bold"} fontSize={"$lg"}>
+            <Text fontWeight={"$bold"} fontSize={"$lg"} color="purple">
               Nhiệt độ
             </Text>
-            <Text>{data.temperature}</Text>
+            <Text color="$white">{data.temperature}</Text>
           </VStack>
           <VStack gap={"$1"}>
-            <Text fontWeight={"$bold"} fontSize={"$lg"}>
+            <Text fontWeight={"$bold"} fontSize={"$lg"} color="purple">
               Ánh sáng
             </Text>
-            <Text>{data.light}</Text>
+            <Text color="$white">{data.light}</Text>
           </VStack>
           <VStack gap={"$1"}>
-            <Text fontWeight={"$bold"} fontSize={"$lg"}>
+            <Text fontWeight={"$bold"} fontSize={"$lg"} color="purple">
               Áp suất
             </Text>
-            <Text>{data.pressure}</Text>
+            <Text color="$white">{data.pressure}</Text>
           </VStack>
           <VStack gap={"$1"}>
-            <Text fontWeight={"$bold"} fontSize={"$lg"}>
+            <Text fontWeight={"$bold"} fontSize={"$lg"} color="purple">
               Các sinh vật
             </Text>
-            <Text>{data.marine_life}</Text>
+            <Text color="$white">{data.marine_life}</Text>
           </VStack>
         </VStack>
+        </ImageBackground>
       </ScrollView>
     </Box>
   );
