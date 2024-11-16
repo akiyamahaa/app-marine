@@ -105,7 +105,6 @@ const Root = () => {
             options={{
               headerShown: true,
               title: "Trò chơi",
-              headerBackTitleVisible: false,
               headerStyle: {
                 backgroundColor: colors.white,
               },

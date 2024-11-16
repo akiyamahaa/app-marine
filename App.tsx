@@ -1,10 +1,12 @@
-import { Platform, StyleSheet } from "react-native";
+import { LogBox, Platform, StyleSheet } from "react-native";
 import { Provider } from "react-redux";
 import store from "./src/store";
 import Root from "./src/navigations/Root";
 import { Box, GluestackUIProvider, Text } from "@gluestack-ui/themed";
 import { StatusBar } from "react-native";
 import { config } from "./config/gluestack-ui.config";
+
+LogBox.ignoreAllLogs();
 
 export default function App() {
   return (

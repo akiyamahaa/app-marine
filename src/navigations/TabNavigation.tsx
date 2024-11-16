@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../screens/home/Home";
-import { Text, VStack, useStyled, useTheme } from "@gluestack-ui/themed";
+import { Box, Text, VStack } from "@gluestack-ui/themed";
 import { BottomTabsParams } from "./config";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Quizz from "../screens/quizz-mode/Quizz";
@@ -20,7 +20,7 @@ interface ITabIcon {
 const TabIcon = ({ focused, name, title }: ITabIcon) => {
   const colors = UseTokenColor();
   return (
-    <VStack alignItems={"center"}>
+    <Box alignItems="center" justifyContent="center" minWidth={80}>
       <Ionicons
         name={name}
         size={20}
@@ -33,7 +33,7 @@ const TabIcon = ({ focused, name, title }: ITabIcon) => {
       >
         {title}
       </Text>
-    </VStack>
+    </Box>
   );
 };
 
@@ -49,28 +49,28 @@ export const TabData: ITabData[] = [
   {
     id: 1,
     tabName: "Home",
-    title: "Trang chủ",
+    title: "Home",
     iconName: "home",
     component: Home,
   },
   {
     id: 2,
     tabName: "Quizz",
-    title: "Trắc nghiệm",
+    title: "Quizz",
     iconName: "apps",
     component: Quizz,
   },
   {
     id: 3,
     tabName: "Practice",
-    title: "Nối từ",
+    title: "Words",
     iconName: "bulb",
     component: Practice,
   },
   {
     id: 4,
     tabName: "Puzzle",
-    title: "Xếp hình",
+    title: "Puzzle",
     iconName: "extension-puzzle",
     component: Puzzle,
   },
@@ -82,9 +82,12 @@ const TabNavigation = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerShown: false,
         tabBarShowLabel: false,
-        tabBarStyle: {},
+        headerShown: false,
+        tabBarStyle: {
+          paddingTop: 12,
+          height: 84,
+        },
       }}
     >
       {TabData.map((tab) => (
